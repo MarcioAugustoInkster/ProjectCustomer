@@ -1,0 +1,72 @@
+﻿@model ProjectCustomer.Domain.Entity.Customer
+
+@{
+    ViewData["Title"] = "Consulta";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 mx-auto">
+            <fieldset class="border p-2">
+                <legend class="w-auto">Ficha de Cliente</legend>
+                <div class="text-right">
+                    <a asp-controller="Customer" asp-action="Cadastro" class="btn btn-sm btn-primary" role="button">
+                        <i class="fas fa-arrow-left"></i> Retornar
+                    </a>
+                </div>
+                <div class="table-responsive mt-2">
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <table class="table table-striped">
+                            <tr>
+                                <th class="text-right">ID</th>
+                                <td class="text-left">@Model.Codigo</td>
+                                <th class="text-right">Nome/Razão Social</th>
+                                <td class="text-left">@Model.Nome</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">CNPJ</th>
+                                <td class="text-left">@Model.Cnpj</td>
+                                <th class="text-right">Ramo de Atividade</th>
+                                <td class="text-left">@Model.RamoAtividade</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Funcionários</th>
+                                <td class="text-left">@Model.Funcionarios</td>
+                                <th class="text-right">Renda Mensal</th>
+                                <td class="text-left">R$ @Model.Faturamento</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Telefone</th>
+                                <td class="text-left">@Model.Telefone</td>
+                                <th class="text-right">Móvel</th>
+                                <td class="text-left">@Model.TelefoneMovel</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Endereço</legend>
+                        <table class="table table-striped">
+                            <tr>
+                                <th class="text-right">Endereço</th>
+                                <td class="text-left">@Model.Endereco</td>
+                                <th class="text-right">CEP</th>
+                                <td class="text-left">@Model.CodigoPostal</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Bairro</th>
+                                <td class="text-left">@Model.Bairro</td>
+                                <th class="text-right">Cidade</th>
+                                <td class="text-left">@Model.Cidade</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Estado</th>
+                                <td class="text-left" colspan="3">@Model.Estado.Nome - @Model.Estado.Sigla</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

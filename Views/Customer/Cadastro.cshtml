@@ -1,0 +1,73 @@
+@model List<ProjectCustomer.Domain.Entity.DTO.CustomerDTO>
+@using ProjectCustomer.Domain.Entity.DTO
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 mx-auto">
+            <fieldset class="border p-2">
+                <legend class="w-auto">Lista de Clientes</legend>
+                <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-primary new-cli">
+                        <i class="fas fa-plus"></i> Novo Cliente
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-dark ml-1 pg-rel">
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
+                <div class="table-responsive mt-2">
+                    <table class="table table-stripped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome / Razão Social</th>
+                                <th>CNPJ</th>
+                                <th>Telefone</th>
+                                <th>Ramo de Atividade</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (CustomerDTO cdto in Model)
+                                {
+                                    <tr>
+                                        <td>@cdto.Codigo</td>
+                                        <td>@cdto.Nome</td>
+                                        <td>@cdto.Cnpj</td>
+                                        <td>@cdto.TelMovel</td>
+                                        <td>@cdto.RamoAtividade</td>
+                                        <td>
+                                            <a asp-controller="Customer" asp-action="Consulta" asp-route-codigo="@cdto.Codigo" class="btn btn-sm btn-info" role="button">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-success new-cli" data-codigo="@cdto.Codigo">
+                                                <i class="far fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger del-cli" data-regis="@cdto.Codigo">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr class="text-center">
+                                    <td colspan="6">Não existem registros</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div id="regcustomerModal" class="modal fade" role="dialog" aria-hidden="true"></div>
+<div id="delcustomerModal" class="modal fade" role="dialog" aria-hidden="true"></div>
